@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+    <ion-toolbar [color]="'primary'">
+        <ion-title>
+            DMA - PoC - BDUAT v1.0.7
+        </ion-title>
+    </ion-toolbar>
+    <ion-toolbar class="filters" [color]="'secondary'">
+        <div class="column">
+            <ion-toggle class="filter" [(ngModel)]="isCI" (ionChange)="updateFilters()"></ion-toggle>
+            <ion-label class="filter filter-label">C.I.</ion-label>
+            <ion-toggle class="filter" [(ngModel)]="is24hs" (ionChange)="updateFilters()"></ion-toggle>
+            <ion-label class="filter filter-label">24hs</ion-label>
+            <ion-toggle class="filter" [(ngModel)]="is48hs" (ionChange)="updateFilters()"></ion-toggle>
+            <ion-label class="filter filter-label">48hs</ion-label>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content id="content" [fullscreen]="true">
+    <div id="container">
+        <ion-list>
+            <ion-item>
+                <ion-label class="header">SYMBOL</ion-label>
+                <ion-label class="header">OFFER Q.</ion-label>
+                <ion-label class="header">OFFER P.</ion-label>
+                <ion-label class="header">BID P.</ion-label>
+                <ion-label class="header">BID Q.</ion-label>
+            </ion-item>
+            <ion-item *ngFor="let price of prices; let i = index">
+                <ion-label class="symbol">{{price.symbol}}</ion-label>
+                <ion-label class="offer">{{price.quantityOffer| number: '1.3-3'}}</ion-label>
+                <ion-label class="offer">{{price.offerPrice | currency: '$' : true: '1.3-3'}}</ion-label>
+                <ion-label class="bid">{{price.bidPrice | currency: '$' : true: '1.3-3'}}</ion-label>
+                <ion-label class="bid">{{price.quantityBid | number: '1.3-3'}}</ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
